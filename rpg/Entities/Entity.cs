@@ -20,5 +20,14 @@ namespace rpg.Entities
         {
             Velocity = velocity;
         }
+
+        public void Move(Vector movement, List<Collidable> collidables)
+        {
+            Vector oldPosition = Position;
+            Position += movement;
+            List<Collidable> inCollision = collidables.Where(x => x.Collides(this)).ToList();
+            if (inCollision.Count > 0)
+                Position = oldPosition;
+        }
     }
 }

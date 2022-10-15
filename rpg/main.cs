@@ -8,20 +8,22 @@ namespace rpg
     {
         private Game game;
         private Player player;
-        private Wall wall;
+        private List<Collidable> map;
 
         public Main()
         {
             InitializeComponent();
 
-            Size = new Size(Toolbox.CanvasWidth, Toolbox.CanvasHeight);
+            Size = new Size(Toolbox.CanvasWidth + Toolbox.CanvasWidthBuffer, Toolbox.CanvasHeight + Toolbox.CanvasHeightBuffer);
             game = new Game();
 
             player = new Player();
-            wall = new Wall(new Vector(300, 300), new Vector(100, 100));
+            map = game.GenerateMap();
 
             CreateCollidable(player, Toolbox.PlayerPcbName);
-            CreateCollidable(wall, Toolbox.WallPcbName);
+
+            for(int i = 0; i < map.Count; i++)
+                CreateCollidable(map[i], $"mapObject{i}");
         }
 
         private void CreateCollidable(Collidable collidable, string name)
@@ -41,8 +43,9 @@ namespace rpg
                 case Keys.D: vector = new Vector( 10,   0); break;
                 case Keys.S: vector = new Vector(  0,  10); break;
             }
-            player.Position += vector;
+            player.Move(vector, map);
             game.UpdatePcbWithCollidable(player, Controls.OfType<PictureBox>().Where(x => x.Name == Toolbox.PlayerPcbName).First());
+            //MessageBox.Show(player.Collides(wall).ToString());
         }
     }
 }

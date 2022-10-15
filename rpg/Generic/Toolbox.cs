@@ -10,6 +10,8 @@ namespace rpg.Generic
     {
         public static int CanvasWidth = 800;
         public static int CanvasHeight = 600;
+        public static int CanvasWidthBuffer = 16;
+        public static int CanvasHeightBuffer = 39;
 
         public static readonly string PlayerPcbName = "pcbPlayer";
         public static readonly string WallPcbName = "pcbWall";

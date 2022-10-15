@@ -17,6 +17,12 @@ namespace rpg.Generic
             Y = y;
         }
 
+        public Vector(int c)
+        {
+            X = c;
+            Y = c;
+        }
+
         public static Vector operator+ (Vector a, Vector b)
         {
             return new Vector(a.X + b.X, a.Y + b.Y);

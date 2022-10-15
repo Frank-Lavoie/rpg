@@ -18,7 +18,7 @@ namespace rpg.Entities
         public Vector Position 
         {
             get { return position; }
-            set
+            protected set
             {
                 int x = Math.Min(Toolbox.CanvasWidth - size.X, Math.Max(0, value.X));
                 int y = Math.Min(Toolbox.CanvasHeight - size.Y, Math.Max(0, value.Y));
@@ -37,6 +37,16 @@ namespace rpg.Entities
         {
             Size = size;
             Position = position;
+        }
+
+        public bool Collides(Collidable other)
+        {
+            return!(
+                other.Position.X >= Position.X + Size.X ||
+                other.Position.Y >= Position.Y + Size.Y ||
+                other.Position.X + other.Size.X <= Position.X ||
+                other.Position.Y + other.Size.Y <= Position.Y
+                );
         }
     }
 }
