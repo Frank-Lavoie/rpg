@@ -11,13 +11,22 @@ namespace rpg.Entities
     {
         //atributes
         private Vector position;
-        private Vector size;
+        private Vector size = new Vector(0, 0);
         private Image sprite;
 
         //properties
-        public Vector Position { get; set; }
-        public Vector Size { get; set; }
-        public Image Sprite { get; set; }
+        public Vector Position 
+        {
+            get { return position; }
+            set
+            {
+                int x = Math.Min(Toolbox.CanvasWidth - size.X, Math.Max(0, value.X));
+                int y = Math.Min(Toolbox.CanvasHeight - size.Y, Math.Max(0, value.Y));
+                position = new Vector(x, y);
+            }
+        }
+        public Vector Size { get { return size; } set { size = value; } }
+        public Image Sprite { get { return sprite; } set { sprite = value; } }
 
         //methods
         protected Collidable(int posX, int posY, int width, int height): this(new Vector(posX, posY), new Vector(width, height)){}
@@ -26,8 +35,8 @@ namespace rpg.Entities
 
         protected Collidable(Vector position, Vector size)
         {
-            Position = position;
             Size = size;
+            Position = position;
         }
     }
 }

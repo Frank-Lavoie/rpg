@@ -9,11 +9,13 @@ namespace rpg.Generic
 {
     internal class Game
     {
-        public void UpdatePcbWithEntity(Entity entity, PictureBox pcb)
+        public void UpdatePcbWithCollidable(Collidable collidable, PictureBox pcb)
         {
-            pcb.Location = new Point(entity.Position.X, entity.Position.Y);
-            pcb.Image = entity.Sprite;
-            pcb.Size = new Size(entity.Size.X, entity.Size.Y);
+            if (collidable == null || pcb == null)
+                return;
+            pcb.Location = new Point(collidable.Position.X, collidable.Position.Y);
+            pcb.Image = collidable.Sprite;
+            pcb.Size = new Size(collidable.Size.X, collidable.Size.Y);
         }
     }
 }
