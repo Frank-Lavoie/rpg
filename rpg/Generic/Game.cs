@@ -24,15 +24,18 @@ namespace rpg.Generic
             int tileSize = 100;
             Vector size = new Vector(tileSize);
 
-            for (int i = 0; i < Toolbox.CanvasWidth / tileSize; i++)
+            for (int k = 0; k < 25; k++)
             {
-                map.Add(new Wall(new Vector(i * tileSize, 0), size));
-                map.Add(new Wall(new Vector(i * tileSize, Toolbox.CanvasHeight - tileSize), size));
-            }
-            for (int i = 0; i < Toolbox.CanvasHeight / tileSize; i++)
-            {
-                map.Add(new Wall(new Vector(0, i * tileSize), size));
-                map.Add(new Wall(new Vector(Toolbox.CanvasWidth - tileSize, i * tileSize), size));
+                for (int i = 0; i < Toolbox.CanvasWidth / tileSize; i++)
+                {
+                    map.Add(new Wall(new Vector(i * tileSize, 0), size));
+                    map.Add(new Wall(new Vector(i * tileSize, Toolbox.CanvasHeight - tileSize), size));
+                }
+                for (int i = 0; i < Toolbox.CanvasHeight / tileSize; i++)
+                {
+                    map.Add(new Wall(new Vector(0, i * tileSize), size));
+                    map.Add(new Wall(new Vector(Toolbox.CanvasWidth - tileSize, i * tileSize), size));
+                }
             }
             return map;
         }

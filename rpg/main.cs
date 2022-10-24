@@ -43,6 +43,9 @@ namespace rpg
                 case Keys.D: vector = new Vector( 10,   0); break;
                 case Keys.S: vector = new Vector(  0,  10); break;
             }
+            int buffer = 300;
+            //List<Collidable> possibleCollidables = map.Where(x => x.Position.X > player.Position.X - buffer &&
+            //x.Position.X < player.Position.X + buffer).ToList();
             player.Move(vector, map);
             game.UpdatePcbWithCollidable(player, Controls.OfType<PictureBox>().Where(x => x.Name == Toolbox.PlayerPcbName).First());
             //MessageBox.Show(player.Collides(wall).ToString());
